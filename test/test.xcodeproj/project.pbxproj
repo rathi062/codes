@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D9AEF351A8BCC55007268B0 /* STFM.c in Sources */ = {isa = PBXBuildFile; fileRef = 4D9AEF331A8BCC55007268B0 /* STFM.c */; };
 		4DE3A55F19DBE3D8009C72D7 /* reflection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3A55E19DBE3D8009C72D7 /* reflection.cpp */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		4D5C937319D5B2A700832CFD /* test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D9AEF331A8BCC55007268B0 /* STFM.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = STFM.c; sourceTree = "<group>"; };
+		4D9AEF341A8BCC55007268B0 /* STFM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STFM.h; sourceTree = "<group>"; };
 		4DE3A55E19DBE3D8009C72D7 /* reflection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = reflection.cpp; path = ../../algos/reflection.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,6 +44,8 @@
 		4D5C936A19D5B2A700832CFD = {
 			isa = PBXGroup;
 			children = (
+				4D9AEF331A8BCC55007268B0 /* STFM.c */,
+				4D9AEF341A8BCC55007268B0 /* STFM.h */,
 				4D5C937519D5B2A700832CFD /* test */,
 				4D5C937419D5B2A700832CFD /* Products */,
 			);
@@ -119,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DE3A55F19DBE3D8009C72D7 /* reflection.cpp in Sources */,
+				4D9AEF351A8BCC55007268B0 /* STFM.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
