@@ -35,8 +35,12 @@ using namespace std;
 #define READ freopen("input.txt", "r", stdin)
 #define WRITE freopen("output.txt", "w", stdout)
 #define LL long long
-#define MX 1000001
+#define MX 10001
 #define MOD 1000000007
+
+#define pipii pair<int, pair<int,int> >
+#define F first
+#define S second
 
 #define p(x) printf("%d",x)
 #define inp(x) scanf("%d",&x)
@@ -54,106 +58,61 @@ using namespace std;
   }*/
 
 using namespace std;
-int gcd(int a, int b)
-{
-    for (;;)
-    {
-        if (a == 0) return b;
-        b %= a;
-        if (b == 0) return a;
-        a %= b;
+struct edge{
+    int src,dst,len,toll;
+}node;
+
+int k,n,r;
+vector<edge> grf[101];
+bool check[101][MX];
+priority_queue<pipii, vector<pipii> , greater<pipii> > q;
+
+void visitNode(int i, int money, int len){
+    if(check[i][money])
+        return;
+    check[i][money]=1;
+    for(int idx = 0; idx< grf[i].size(); idx++){
+        edge e = grf[i][idx];
+        if(!check[e.dst][money-e.toll] && e.toll <= money){
+            q.push(MP(e.len + len, MP(e.dst, money - e.toll) ));
+        }
     }
 }
 
-int lcm(int a, int b)
-{
-    int temp = gcd(a, b);
+int  main(){
+    int t;
+    inp(t);
+    while(t--){
+        inp(k);
+        inp(n);
+        inp(r);
+        CLR(check);
+        CLR(grf);
+        for(int i=0;i<r;i++){
+            inp(node.src);
+            inp(node.dst);
+            inp(node.len);
+            inp(node.toll);
+            grf[node.src].PB(node);
+        }
+        while(!q.empty())
+            q.pop();
 
-    return temp ? (a / temp * b) : 0;
+        bool reached = 0;
+        q.push(MP(0, MP(1,k)));
+        while(!q.empty()){
+            pipii top = q.top();
+            q.pop();
+            if(top.S.F == n){
+                reached = 1;
+                cout<<top.F<<endl;
+                break;
+            }
+            visitNode(top.S.F, top.S.S, top.F );
+        }
+        
+        if(!reached)
+            cout<<"-1\n";
+    }
+    return 0;
 }
-struct node{
-	int val,x,y;
-}nod;
-bool ch[101][10001];
-int dp[101][10001],rsk[101][101][101],tm[101][101][101];
-int main()
-{
-	int ans,f,i,c,min,t=0,j,cnt,r,tim,x,y;
-	int n,k,s;
-	inp(t);
-	while(t--)
-	{
-		inp(k);
-		inp(n);
-		inp(r);
-		CLR(ch);
-		for(i=1;i<=n;i++)
-		for(j=0;j<=k;j++)
-		dp[i][j]=1000000000;
-		for(i=1;i<=r;i++)
-		{
-			inp(x);
-			inp(y);
-			inp(f);
-			inp(c);
-			rsk[x][y][rsk[x][y][0]+1]=f;
-			rsk[x][y][0]++;
-			
-			tm[x][y][tm[x][y][0]+1]=c;
-			tm[x][y][0]++;
-			
-			rsk[y][x][rsk[y][x][0]+1]=f;
-			rsk[y][x][0]++;
-			
-			tm[y][x][tm[y][x][0]+1]=c;
-			tm[y][x][0]++;
-		}
-		dp[1][k]=0;
-		while(1)
-		{
-			min=1000000000;
-			f=0;
-			for(i=1;i<=n;i++)
-			{
-				for(j=0;j<=k;j++)
-				{
-					if(ch[i][j]==0&&dp[i][j]<min)
-					{
-						f=1;
-						min=dp[i][j];
-						x=i;
-						y=j;
-					}
-				}
-			}
-			if(f==0)
-			break;
-			//cout<<"\nx = "<<x<<" y = "<<y<<" min = "<<min;
-			ch[x][y]=1;
-			for(i=1;i<=n;i++)
-			{
-				for(j=1;j<=rsk[x][i][0];j++)
-				if((y-tm[x][i][j])>=0&&dp[i][y-tm[x][i][j]]>dp[x][y]+rsk[x][i][j])
-				{
-					dp[i][y-tm[x][i][j]]=dp[x][y]+rsk[x][i][j];
-					//cout<<"\ndp["<<i<<"]["<<y-tm[x][i]<<"] = "<<dp[i][y-tm[x][i]];
-				}
-			}
-		}
-		ans=100000000;
-		for(i=0;i<=k;i++)
-		{
-			if(ans>=dp[n][i])
-			{
-				ans=dp[n][i];
-				tim=i;
-			}
-		}
-		if(ans!=100000000)
-		printf("%d\n",ans);
-		else
-		printf("-1\n");
-	}
-	return 0;
-}
-

@@ -83,7 +83,6 @@ void getKthSequence(int k,int n,int m){
             getKthSequence(k-dp[n][i-1],n-coins[i],i-1);
             return;
         }
-        sum =
     }
 }
 

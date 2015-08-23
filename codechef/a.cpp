@@ -55,27 +55,49 @@ using namespace std;
 
 
 using namespace std;
-bool check[MX];
-int main()
-{
-    int t=0;
-    inp(t);
-    while(t--)
-    {
-        int n,a;
-        inp(n);
-        CLR(check);
-        int cnt=0;
-        for(int i=0;i<n;i++)
-        {
-            inp(a);
-            if(!check[a])
-            {
-                check[a]=1;
-                cnt++;
-            }
+struct Node{
+    int val;
+    bool isIn;
+};
+int l;
+vector<int> tree[51];
+
+Node dfs(int n){
+    long childrens = tree[n].size();
+    Node nd;
+    nd.val = 0;
+    nd.isIn = false;
+    for(int i=0;i<childrens;i++){
+        Node node = dfs(tree[n][i]);
+        nd.val += node.val;
+        if(!node.isIn){
+            nd.val++;
+            nd.isIn = true;
         }
-        cout<<cnt<<endl;
     }
+    return nd;
+}
+
+int getResult(){
+    Node n = dfs(0);
+    return n.val;
+}
+int maxUnrelatedPaths(vector <int> parent) {
+    l = parent.size();
+    for(int i=0;i<l;i++){
+        tree[parent[i]].push_back(i+1);
+    }
+    return getResult();
+}
+
+int  main(){
+    vector<int> parent;
+    int n,a;
+    cin>>n;
+    for(int i=0;i<n;i++){
+        cin>>a;
+        parent.PB(a);
+    }
+    cout<<maxUnrelatedPaths(parent);
     return 0;
 }

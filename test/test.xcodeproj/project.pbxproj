@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4D9AEF351A8BCC55007268B0 /* STFM.c in Sources */ = {isa = PBXBuildFile; fileRef = 4D9AEF331A8BCC55007268B0 /* STFM.c */; };
-		4DE3A55F19DBE3D8009C72D7 /* reflection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3A55E19DBE3D8009C72D7 /* reflection.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,7 +122,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DE3A55F19DBE3D8009C72D7 /* reflection.cpp in Sources */,
 				4D9AEF351A8BCC55007268B0 /* STFM.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
